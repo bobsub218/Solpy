@@ -312,6 +312,7 @@ def getTotalSupply(chain='mainnet'):
         return data['result']
     else:
         return False
+ 
 
 
 def getVersion(chain='mainnet'):
@@ -331,6 +332,7 @@ def getVoteAccounts(chain='mainnet'):
     else:
         return False
 
+    
 
 def minimumLedgerSlot(chain='mainnet'):
     response = call('minimumLedgerSlot', chain)
@@ -341,6 +343,7 @@ def minimumLedgerSlot(chain='mainnet'):
         return False
 
 
+    
 def requestAirdrop(pubkey, lamports, chain='mainnet'):
     response = call('requestAirdrop', chain, [pubkey, lamports])
     if response:
