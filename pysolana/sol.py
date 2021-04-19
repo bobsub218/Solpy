@@ -53,11 +53,13 @@ class Sol:
             call(f'solana airdrop {amount} {self.pubkey} ' +\
                   f'--url {CHAINS[self.chain]}',
                   shell=True, stdout=PIPE, stderr=PIPE)
+            
 
         else:
             Popen(f'solana airdrop {amount} {self.pubkey} ' +\
                   f'--url {CHAINS[self.chain]}',
                   shell=True, stdout=PIPE, stderr=PIPE)
+            
 
     def transfer(self, to, amount, wait=True):
         if to.__class__.__name__ == 'Sol':
@@ -79,6 +81,7 @@ class Sol:
         except CalledProcessError as grepexc:
             pass
         raise Exception('transfer error')
+        
 
     def create_stake_account(self, amount):
         stake_account = Sol()
@@ -93,6 +96,7 @@ class Sol:
         except CalledProcessError as grepexc:
             pass
         raise Exception('stake account error')
+        
 
     def delegate_stake(self, stake_account, vote_account):
         text = f'printf "{self.seedphrase}\n\n{self.seedphrase}\n\n" | ' +\
@@ -106,6 +110,7 @@ class Sol:
             error = True
         if error:
             raise Exception('delegate stake error')
+            
 
     def deactivate_stake(self, stake_account):
         text = f'printf "{self.seedphrase}\n\n{self.seedphrase}\n\n" | ' +\
@@ -119,6 +124,7 @@ class Sol:
             error = True
         if error:
             raise Exception('deactivate stake error')
+            
 
     def withdraw_stake(self, stake_account, amount):
         text = f'printf "{self.seedphrase}\n\n{self.seedphrase}\n\n" | ' +\
