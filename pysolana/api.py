@@ -377,4 +377,5 @@ def validatorExit(chain='mainnet'):
         data = response.json()
         return data['result']
     else:
+        
         return False
