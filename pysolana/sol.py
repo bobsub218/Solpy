@@ -7,7 +7,6 @@ CHAINS = {
     'devnet': 'https://devnet.solana.com'
 }
 
-
 class Sol:
     def __init__(self, seedphrase=None, chain='mainnet'):
         if seedphrase:
@@ -90,6 +89,7 @@ class Sol:
                f'{stake_account.seedphrase}" | ' +\
                'solana create-stake-account --from ASK ASK 100' +\
                ' --stake-authority ASK --withdraw-authority ASK --fee-payer ASK'
+        
         call(text, shell=True, stdout=PIPE, stderr=PIPE)
         try:
             return stake_account.pubkey
