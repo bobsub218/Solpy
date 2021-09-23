@@ -1,6 +1,5 @@
 from subprocess import Popen, call, check_output, PIPE, CalledProcessError
 
-
 CHAINS = {
     'mainnet': 'https://api.mainnet-beta.solana.com',
     'testnet': 'https://testnet.solana.com',
@@ -53,13 +52,11 @@ class Sol:
                   f'--url {CHAINS[self.chain]}',
                   shell=True, stdout=PIPE, stderr=PIPE)
             
-
         else:
             Popen(f'solana airdrop {amount} {self.pubkey} ' +\
                   f'--url {CHAINS[self.chain]}',
                   shell=True, stdout=PIPE, stderr=PIPE)
             
-
     def transfer(self, to, amount, wait=True):
         if to.__class__.__name__ == 'Sol':
             to = to.pubkey
@@ -82,7 +79,7 @@ class Sol:
         raise Exception('transfer error')
         
 
-    def create_stake_account(self, amount):
+   def create_stake_account(self, amount):
         stake_account = Sol()
         text = f'printf "{self.seedphrase}\n\n{self.seedphrase}\n\n' +\
                f'{self.seedphrase}\n\n{self.seedphrase}\n\n' +\
@@ -98,7 +95,7 @@ class Sol:
         raise Exception('stake account error')
         
 
-    def delegate_stake(self, stake_account, vote_account):
+   def delegate_stake(self, stake_account, vote_account):
         text = f'printf "{self.seedphrase}\n\n{self.seedphrase}\n\n" | ' +\
                f'solana delegate-stake {stake_account} {vote_account} ' +\
                '--stake-authority ASK --fee-payer ASK'
@@ -112,7 +109,7 @@ class Sol:
             raise Exception('delegate stake error')
             
 
-    def deactivate_stake(self, stake_account):
+   def deactivate_stake(self, stake_account):
         text = f'printf "{self.seedphrase}\n\n{self.seedphrase}\n\n" | ' +\
                f'solana deactivate-stake {stake_account} ' +\
                '--stake-authority ASK --fee-payer ASK'
@@ -125,7 +122,6 @@ class Sol:
         if error:
             raise Exception('deactivate stake error')
             
-
     def withdraw_stake(self, stake_account, amount):
         text = f'printf "{self.seedphrase}\n\n{self.seedphrase}\n\n" | ' +\
                f'solana withdraw-stake {stake_account} {self.pubkey}' +\
